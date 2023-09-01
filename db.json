@@ -1,0 +1,23 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "text": "string",
+      "category": "todo",
+      "likes": [
+        "string"
+      ],
+      "user": "string"
+    },
+    {
+      "id": 2,
+      "text": "string",
+      "category": "inProcess",
+      "likes": [
+        "string"
+      ],
+      "user": "string"
+    }
+  ],
+  "comments": []
+}
