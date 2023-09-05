@@ -1,23 +1,100 @@
 {
-  "todos": [
+  "products": [
     {
       "id": 1,
-      "text": "string",
-      "category": "todo",
+      "title": "Набор ухода за телом и для расслабления",
+      "img": "https://avatars.mds.yandex.net/get-mpic/1923922/img_id4676014864732396413.png/orig",
+      "description": "Гель для душа мягко очищает, не нарушая защитный барьер. У него нежная кремовая текстура, поэтому он пенится чуть меньше обычных гелей, но взамен даёт коже дополнительное увлажнение.",
+      "price": 9888,
+      "category": "car",
       "likes": [
-        "string"
+        "krasavachic@gmail.com",
+        "admin1@gmail.com",
+        "user@gmail.com"
       ],
-      "user": "string"
+      "user": "krasavachic@gmail.com",
+      "date": "25/05/23"
     },
     {
       "id": 2,
-      "text": "string",
-      "category": "inProcess",
+      "title": "Набор ухода за телом и для расслабления",
+      "img": "https://avatars.mds.yandex.net/get-mpic/1923922/img_id4676014864732396413.png/orig",
+      "description": "Гель для душа мягко очищает, не нарушая защитный барьер. У него нежная кремовая текстура, поэтому он пенится чуть меньше обычных гелей, но взамен даёт коже дополнительное увлажнение.",
+      "price": 9,
+      "category": "home",
       "likes": [
-        "string"
+        "krasavachic@gmail.com",
+        "admin1@gmail.com",
+        "user@gmail.com",
+        "admin@gmail.com"
       ],
-      "user": "string"
+      "user": "krasavachic@gmail.com",
+      "date": "25/05/23"
+    },
+    {
+      "id": 3,
+      "title": "Набор ухода за телом и для расслабления",
+      "img": "https://avatars.mds.yandex.net/get-mpic/1923922/img_id4676014864732396413.png/orig",
+      "description": "Гель для душа мягко очищает, не нарушая защитный барьер. У него нежная кремовая текстура, поэтому он пенится чуть меньше обычных гелей, но взамен даёт коже дополнительное увлажнение.",
+      "price": 9,
+      "category": "food",
+      "likes": [
+        "krasavachic@gmail.com",
+        "admin1@gmail.com"
+      ],
+      "user": "krasavachic@gmail.com",
+      "date": "25/05/23"
+    },
+    {
+      "id": 4,
+      "title": "Набор ухода за телом и для расслабления",
+      "img": "https://avatars.mds.yandex.net/get-mpic/1923922/img_id4676014864732396413.png/orig",
+      "description": "Гель для душа мягко очищает, не нарушая защитный барьер. У него нежная кремовая текстура, поэтому он пенится чуть меньше обычных гелей, но взамен даёт коже дополнительное увлажнение.",
+      "price": 9,
+      "category": "garden",
+      "likes": [
+        "krasavachic@gmail.com",
+        "admin1@gmail.com"
+      ],
+      "user": "krasavachic@gmail.com",
+      "date": "25/05/23"
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "productId": "3",
+      "comment": "sdcsncjwncjnsnasijcnjaskj",
+      "userEmail": "user1@gmail.com",
+      "id": 1
+    },
+    {
+      "productId": "3",
+      "comment": "dsadsadasasdsaddas",
+      "userEmail": "krasavachic@gmail.com",
+      "id": 2
+    }
+  ],
+  "favourites": [
+    {
+      "item": {
+        "id": 3,
+        "title": "Book",
+        "photo": "https://avatars.mds.yandex.net/get-mpic/7150287/img_id5951292038387306776.jpeg/orig",
+        "description": "Книга имиджмейкеров Наталии Найденской и Инессы Трубецковой — источник вдохновения и практическое руководство для тех, кто хочет безошибочно подбирать цвета одежды, аксессуаров и макияжа, чтобы всегда выглядеть стильно и неотразимо.",
+        "price": 599,
+        "category": "мода",
+        "selected": true,
+        "likes": [
+          "krasavachic@gmail.com",
+          "user3@gmail.com",
+          "admin1@gmail.com"
+        ],
+        "hovered": true,
+        "user": "user1@gmail.com"
+      },
+      "email": "user2@gmail.com",
+      "itemId": 3,
+      "id": "user23"
+    }
+  ]
 }

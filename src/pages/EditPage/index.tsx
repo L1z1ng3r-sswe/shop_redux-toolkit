@@ -1,35 +1,60 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import styles from "./AddPage.module.scss";
-import { AppDispatch } from "../../redux/Store";
-import { TProduct, ECategory } from "../../redux/features/ProductsSlice/types";
-import { Navigate, useNavigate } from "react-router-dom";
-import { addProduct } from "../../redux/features/ProductsSlice";
+import React, { useEffect, useState } from "react";
+import styles from "./EditPage.module.scss";
+import { AppDispatch, RootState } from "../../redux/Store";
+import {
+  TProduct,
+  ECategory,
+  TEProduct,
+} from "../../redux/features/ProductsSlice/types";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
+import { editProduct, getOneProduct } from "../../redux/features/ProductsSlice";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
+import { useSelector } from "react-redux";
 
-const AddPage = () => {
-  const [user, setUser] = useState<null | string>(null);
-  const [title, setTitle] = useState("");
-  const [img, setImg] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState<ECategory>(ECategory.car);
+interface RouteParams {
+  id: string;
+}
+
+const EditPage: React.FC = () => {
+  const { oneProduct } = useSelector((state: RootState) => state.products);
 
   const dispatch = AppDispatch();
+  const [user, setUser] = useState<string | null>(null);
+  const [title, setTitle] = useState<string>("");
+  const [img, setImg] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
+  const [category, setCategory] = useState<ECategory>(ECategory.car);
+
+  const { id } = useParams<RouteParams>();
   const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(getOneProduct(Number(id)));
+
     const data = JSON.parse(localStorage.getItem("user"));
     if (!data) {
-      return <Navigate to="/" />;
+      navigate("/");
+    } else {
+      setUser(data.email);
     }
-    setUser(data.email);
-  }, []);
+  }, [dispatch, id, navigate]);
 
-  function handleSubmit(e: any): void {
+  useEffect(() => {
+    if (oneProduct) {
+      setTitle(oneProduct.title);
+      setImg(oneProduct.img);
+      setDescription(oneProduct.description);
+      setPrice(oneProduct.price.toString());
+      setCategory(oneProduct.category);
+    }
+  }, [oneProduct]);
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     //! date generate starts
@@ -40,18 +65,15 @@ const AddPage = () => {
     const addDate = `${day}/${month}/${year}`;
     //! date generate ends
 
-    const product: TProduct = {
+    const product: TEProduct = {
       title: title,
       img: img,
       description: description,
       price: +price,
       category: category,
-      likes: [],
-      user,
-      date: addDate,
     };
 
-    dispatch(addProduct(product));
+    dispatch(editProduct({ id: Number(id), updatedProduct: product }));
     setUser("");
     setTitle("");
     setImg("");
@@ -60,13 +82,12 @@ const AddPage = () => {
     setCategory(ECategory.car);
 
     navigate("/");
-  }
+  };
 
-  function handleChange(event: React.MouseEvent<HTMLInputElement>) {
-    setCategory(event.target.value);
-  }
+  const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+    setCategory(e.target.value as ECategory);
+  };
 
-  //todo +++++++++++++++++++++++++++++++++++++++++++++++ return ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   return (
     <div
       style={{
@@ -124,14 +145,14 @@ const AddPage = () => {
             }}
           >
             <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">
-              Age
+              Category
             </InputLabel>
             <Select
               sx={{ color: "white" }}
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={category}
-              label="category"
+              label="Category"
               onChange={handleChange}
             >
               <MenuItem value={ECategory.car}>Cars</MenuItem>
@@ -154,4 +175,4 @@ const AddPage = () => {
   );
 };
 
-export default AddPage;
+export default EditPage;
